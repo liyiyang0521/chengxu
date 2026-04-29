@@ -1,0 +1,49 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+env/
+venv/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Data
+data/
+
+# Test
+.pytest_cache/
+.coverage
+htmlcov/
+
+# GitHub
+.github/
+
+# Documentation
+*.md
+!README.md
+
+# Local config
+config.local.yaml
+*.local.yaml

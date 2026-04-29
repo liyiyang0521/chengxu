@@ -1,0 +1,39 @@
+# 多Agent协同运营系统 - Docker Compose 配置
+
+version: '3.8'
+
+services:
+  # API 服务
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: multi-agent-api
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=production
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # 可选：添加 Redis 缓存（未来扩展用）
+  # redis:
+  #   image: redis:7-alpine
+  #   container_name: multi-agent-redis
+  #   restart: unless-stopped
+  #   ports:
+  #     - "6379:6379"
+  #   volumes:
+  #     - redis_data:/data
+
+# volumes:
+#   redis_data:
