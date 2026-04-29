@@ -1,0 +1,99 @@
+# 多Agent协同运营系统配置文件
+# Multi-Agent Collaborative Operations System Config
+
+project_name: "多Agent协同运营系统"
+log_level: "INFO"  # DEBUG / INFO / WARNING / ERROR
+data_dir: "./data"
+
+# LLM 配置
+llm:
+  provider: "openai"           # openai / anthropic / local
+  model: "gpt-4"                # gpt-4 / gpt-3.5-turbo / claude-3
+  api_key: ""                   # 填写你的 API Key
+  base_url: "https://api.openai.com/v1"  # API 地址
+  temperature: 0.7
+  max_tokens: 2000
+  timeout: 60
+
+# Agent 配置
+agents:
+  manager:
+    name: "Manager"
+    role: "manager"
+    description: "任务协调者"
+    max_retries: 3
+    timeout: 300
+    
+  researcher:
+    name: "Researcher"
+    role: "researcher"
+    description: "热点研究员"
+    max_retries: 2
+    timeout: 180
+    
+  writer:
+    name: "Writer"
+    role: "writer"
+    description: "内容写作者"
+    max_retries: 2
+    timeout: 300
+    
+  editor:
+    name: "Editor"
+    role: "editor"
+    description: "文字编辑"
+    max_retries: 2
+    timeout: 180
+    
+  publisher:
+    name: "Publisher"
+    role: "publisher"
+    description: "多平台发布"
+    max_retries: 3
+    timeout: 120
+
+# 发布平台配置
+platforms:
+  wechat_public:
+    enabled: true
+    app_id: ""                  # 微信公众号 AppID
+    app_secret: ""              # 微信公众号 AppSecret
+    
+  zhihu:
+    enabled: true
+    cookies: ""                 # 知乎登录 Cookie
+    
+  juejin:
+    enabled: true
+    cookie: ""                  # 掘金 Cookie
+    
+  xiaohongshu:
+    enabled: false
+    cookie: ""
+    
+  jianshu:
+    enabled: false
+    cookie: ""
+    
+  bili:
+    enabled: false
+    cookie: ""
+
+# 工作流配置
+workflow:
+  auto_research: true
+  auto_write: true
+  auto_edit: true
+  auto_publish: true
+  parallel_write: false
+
+# 默认发布平台
+default_platforms:
+  - zhihu
+  - juejin
+
+# 默认内容配置
+default_content:
+  style: "tutorial"           # tutorial / analysis / news / opinion
+  word_count: 2000
+  image_count: 3
